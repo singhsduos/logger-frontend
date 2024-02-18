@@ -14,7 +14,10 @@ const LogViewer = () => {
     })
 
     socket.on('update-log', logEntries => {
-      setLogEntries(logEntries)
+      setLogEntries(prevLogEntries => [
+        ...prevLogEntries,
+        logEntries[logEntries.length - 1]
+      ])
     })
 
     return () => {
