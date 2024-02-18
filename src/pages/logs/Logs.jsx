@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import io from 'socket.io-client'
 import './CSS/logs.css'
+const backend_url = 'https://logger-backend-c0zr.onrender.com/'
 
 const LogViewer = () => {
   const [logEntries, setLogEntries] = useState([])
 
   useEffect(() => {
-    const socket = io('http://localhost:4000')
+    const socket = io(backend_url)
 
     socket.on('init', initialLogEntries => {
       setLogEntries(initialLogEntries)
